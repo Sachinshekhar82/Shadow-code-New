@@ -63,12 +63,12 @@ class GeminiService:
         return settings.GEMINI_API_KEY or settings.LLM_API_KEY or ""
 
     def _get_model_name(self) -> str:
-        return settings.GEMINI_MODEL or settings.LLM_MODEL or "gemini-flash-lite-latest"
+        return settings.GEMINI_MODEL or settings.LLM_MODEL or "gemini-3.1-flash-lite"
 
     def _get_candidate_models(self) -> List[str]:
         """Provides prioritized candidate model cascade for quota and rate-limit resilience."""
         primary = self._get_model_name()
-        fallbacks = ["gemini-flash-lite-latest", "gemini-flash-latest", "gemini-2.5-flash"]
+        fallbacks = ["gemini-3.1-flash-lite", "gemini-flash-lite-latest", "gemini-2.5-flash"]
         candidates = [primary]
         for f in fallbacks:
             if f not in candidates:
@@ -84,7 +84,11 @@ class GeminiService:
         if self._client is None or self._client_key != key:
             try:
                 from google import genai
-                self._client = genai.Client(api_key=key)
+                from google.genai import types
+                self._client = genai.Client(
+                    api_key=key,
+                    http_options=types.HttpOptions(api_version="v1beta")
+                )
                 self._client_key = key
             except Exception as e:
                 sanitized_msg = redact_secrets(str(e))
@@ -271,9 +275,9 @@ class GeminiService:
                         metadata["error"] = sanitized_msg
                         return None, metadata
 
-                    if "429" in err_str or "resource_exhausted" in err_str:
-                        # Move directly to next candidate model if quota exhausted
-                        logger.info(f"Model '{model}' quota reached. Cascading to next candidate model...")
+                    if "429" in err_str or "resource_exhausted" in err_str or "404" in err_str or "not_found" in err_str:
+                        # Move directly to next candidate model if quota exhausted or model not found
+                        logger.info(f"Model '{model}' unavailable or quota reached. Cascading to next candidate model...")
                         break
 
                     logger.warning(f"Gemini structured generation attempt {attempt + 1} for model '{model}' failed: {sanitized_msg}")
@@ -351,8 +355,8 @@ class GeminiService:
                         metadata["error"] = sanitized_msg
                         return None, metadata
 
-                    if "429" in err_str or "resource_exhausted" in err_str:
-                        logger.info(f"Model '{model}' quota reached. Cascading to next candidate model...")
+                    if "429" in err_str or "resource_exhausted" in err_str or "404" in err_str or "not_found" in err_str:
+                        logger.info(f"Model '{model}' unavailable or quota reached. Cascading to next candidate model...")
                         break
 
                     logger.warning(f"Gemini text generation attempt {attempt + 1} for '{model}' failed: {sanitized_msg}")

@@ -50,10 +50,10 @@ class Settings(BaseSettings):
 
     # AI & Google Gemini Official Engine
     GEMINI_API_KEY: str = Field(default=os.getenv("GEMINI_API_KEY", os.getenv("LLM_API_KEY", "")))
-    GEMINI_MODEL: str = Field(default=os.getenv("GEMINI_MODEL", os.getenv("LLM_MODEL", "gemini-2.5-flash")))
+    GEMINI_MODEL: str = Field(default=os.getenv("GEMINI_MODEL", os.getenv("LLM_MODEL", "gemini-3.1-flash-lite")))
     LLM_PROVIDER: str = Field(default=os.getenv("LLM_PROVIDER", "gemini"))
     LLM_API_KEY: str = Field(default=os.getenv("GEMINI_API_KEY", os.getenv("LLM_API_KEY", "")))
-    LLM_MODEL: str = Field(default=os.getenv("GEMINI_MODEL", os.getenv("LLM_MODEL", "gemini-2.5-flash")))
+    LLM_MODEL: str = Field(default=os.getenv("GEMINI_MODEL", os.getenv("LLM_MODEL", "gemini-3.1-flash-lite")))
     MAX_RETRY_LIMIT: int = 3
     GEMINI_REQUEST_TIMEOUT_SECONDS: int = 45
 
