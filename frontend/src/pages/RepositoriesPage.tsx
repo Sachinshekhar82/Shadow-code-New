@@ -229,8 +229,8 @@ export const RepositoriesPage: React.FC<RepositoriesPageProps> = ({
 
   const totalFindings = scans.reduce((acc, s) => acc + (s.total_findings || 0), 0);
   const repoDetails = typeof githubStatus?.repository === 'object' ? (githubStatus.repository as GitHubRepoDetails) : null;
-  const repoFullName = repoDetails?.full_name || (typeof githubStatus?.repository === 'string' ? githubStatus.repository : 'Sachinshekhar82/Shadow-code');
-  const targetRepoUrl = repoDetails?.html_url || 'https://github.com/Sachinshekhar82/Shadow-code';
+  const repoFullName = repoDetails?.full_name || (typeof githubStatus?.repository === 'string' ? githubStatus.repository : 'Sachinshekhar82/Shadow-code-New');
+  const targetRepoUrl = repoDetails?.html_url || 'https://github.com/Sachinshekhar82/Shadow-code-New';
 
   return (
     <div className="space-y-6">

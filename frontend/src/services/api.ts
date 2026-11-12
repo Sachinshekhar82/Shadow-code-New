@@ -33,7 +33,7 @@ export async function fetchHealth(): Promise<SystemStatus> {
     llm_provider: 'Shadow-Code Multi-Engine',
     nvd_configured: true,
     github_configured: !!data.github_configured,
-    active_repository: 'https://github.com/Sachinshekhar82/Shadow-code.git',
+    active_repository: 'https://github.com/Sachinshekhar82/Shadow-code-New.git',
     version: '1.0.0'
   };
 }

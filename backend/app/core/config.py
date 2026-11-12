@@ -44,9 +44,9 @@ class Settings(BaseSettings):
 
     # GitHub Integration
     GITHUB_TOKEN: str = Field(default=os.getenv("GITHUB_TOKEN", ""))
-    GITHUB_REPOSITORY: str = Field(default=os.getenv("GITHUB_REPOSITORY", "Sachinshekhar82/Shadow-code"))
+    GITHUB_REPOSITORY: str = Field(default=os.getenv("GITHUB_REPOSITORY", "Sachinshekhar82/Shadow-code-New"))
     GITHUB_WEBHOOK_SECRET: str = Field(default=os.getenv("GITHUB_WEBHOOK_SECRET", "shadow-code-webhook-secret"))
-    DEFAULT_REPO_URL: str = "https://github.com/Sachinshekhar82/Shadow-code.git"
+    DEFAULT_REPO_URL: str = "https://github.com/Sachinshekhar82/Shadow-code-New.git"
 
     # AI & Google Gemini Official Engine
     GEMINI_API_KEY: str = Field(default=os.getenv("GEMINI_API_KEY", os.getenv("LLM_API_KEY", "")))

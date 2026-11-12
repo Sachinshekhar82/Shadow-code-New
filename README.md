@@ -1,6 +1,6 @@
 # 🛡️ Shadow-Code: Agentic AI-Powered Secure SDLC Auditor
 
-[![CI/CD Security Pipeline](https://github.com/Sachinshekhar82/Shadow-code/actions/workflows/security-sdlc.yml/badge.svg)](https://github.com/Sachinshekhar82/Shadow-code/actions)
+[![CI/CD Security Pipeline](https://github.com/Sachinshekhar82/Shadow-code-New/actions/workflows/security-sdlc.yml/badge.svg)](https://github.com/Sachinshekhar82/Shadow-code-New/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-brightgreen.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
@@ -86,8 +86,8 @@ flowchart TD
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Sachinshekhar82/Shadow-code.git
-   cd Shadow-code
+   git clone https://github.com/Sachinshekhar82/Shadow-code-New.git
+   cd Shadow-code-New
    ```
 
 2. **Backend Setup**:
@@ -147,7 +147,7 @@ npm run dev
 
 ## 6. Installing the Git Pre-Push Gate
 
-To prevent insecure code from reaching the remote repository `https://github.com/Sachinshekhar82/Shadow-code.git`:
+To prevent insecure code from reaching the remote repository `https://github.com/Sachinshekhar82/Shadow-code-New.git`:
 
 ```bash
 # Install the hook

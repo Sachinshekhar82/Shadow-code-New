@@ -99,7 +99,7 @@ export function App() {
         status={systemStatus}
         onRunDemo={handleRunDemo}
         isRunningDemo={isRunningDemo}
-        activeRepoName={repositories[0]?.name || 'Sachinshekhar82/Shadow-code'}
+        activeRepoName={repositories[0]?.name || 'Sachinshekhar82/Shadow-code-New'}
       />
 
       {/* Main Container */}

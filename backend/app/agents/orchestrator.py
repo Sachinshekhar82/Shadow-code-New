@@ -31,7 +31,7 @@ class AgentOrchestrator:
     def orchestrate_finding_workflow(
         self,
         finding: FindingSchema,
-        repo_url: str = "https://github.com/Sachinshekhar82/Shadow-code.git"
+        repo_url: str = "https://github.com/Sachinshekhar82/Shadow-code-New.git"
     ) -> Dict[str, Any]:
         """
         Coordinates the end-to-end multi-agent audit lifecycle for a single finding:

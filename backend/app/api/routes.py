@@ -84,7 +84,7 @@ def get_staged_test_file():
         "content": content,
         "language": "python",
         "repository_id": "repo-shadow-code",
-        "remote_repo": "https://github.com/Sachinshekhar82/Shadow-code.git",
+        "remote_repo": "https://github.com/Sachinshekhar82/Shadow-code-New.git",
         "vulnerabilities": [
             {"type": "Hard-coded Secret (sk_live_...)", "cwe": "CWE-798", "severity": "CRITICAL", "line": 12},
             {"type": "Weak Cryptographic Hash (MD5)", "cwe": "CWE-328", "severity": "MEDIUM", "line": 16},

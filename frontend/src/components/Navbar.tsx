@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <GitBranch className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-[#8190A8]">Target:</span>
             <span className="text-[#F8FAFC] font-mono font-medium truncate max-w-[240px]">
-              {activeRepoName || 'Sachinshekhar82/Shadow-code'}
+              {activeRepoName || 'Sachinshekhar82/Shadow-code-New'}
             </span>
           </div>
         </div>

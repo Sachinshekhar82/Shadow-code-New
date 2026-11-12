@@ -23,6 +23,6 @@ services:
       - key: GITHUB_TOKEN
         sync: false
       - key: GITHUB_REPOSITORY
-        value: Sachinshekhar82/Shadow-code
+        value: Sachinshekhar82/Shadow-code-New
       - key: CORS_ORIGINS
         value: "*"
