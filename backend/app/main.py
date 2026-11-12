@@ -2,7 +2,7 @@ import os
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.core.config import settings
@@ -56,9 +56,15 @@ async def lifespan(app: FastAPI):
             if findings:
                 db.findings.insert_many([f.model_dump() for f in findings])
                 try:
-                    # Automatically orchestrate analysis for the highest severity finding
+                    # Run orchestration in background thread so HTTP server starts instantly
                     crit_finding = next((f for f in findings if f.severity in ["CRITICAL", "HIGH"]), findings[0])
-                    orchestrator.orchestrate_finding_workflow(crit_finding)
+                    import threading
+                    threading.Thread(
+                        target=orchestrator.orchestrate_finding_workflow,
+                        args=(crit_finding,),
+                        daemon=True,
+                        name="baseline-orchestration"
+                    ).start()
                 except Exception as orch_err:
                     logger.warning(f"Notice during initial orchestration: {orch_err}")
 
@@ -109,7 +115,7 @@ if os.path.exists(frontend_dist):
     @app.get("/{full_path:path}", include_in_schema=False)
     async def serve_spa(full_path: str):
         if full_path.startswith("api") or full_path.startswith("docs") or full_path == "openapi.json":
-            return {"detail": "Not found"}
+            raise HTTPException(status_code=404, detail="Not found")
         target_file = os.path.join(frontend_dist, full_path)
         if full_path and os.path.isfile(target_file):
             return FileResponse(target_file)
